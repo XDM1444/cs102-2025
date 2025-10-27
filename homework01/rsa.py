@@ -13,7 +13,18 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    pass
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
 
 def gcd(a: int, b: int) -> int:
@@ -25,7 +36,9 @@ def gcd(a: int, b: int) -> int:
     1
     """
     # PUT YOUR CODE HERE
-    pass
+    while b != 0:
+        a, b = b, a % b
+    return abs(a)
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -36,7 +49,13 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
     # PUT YOUR CODE HERE
-    pass
+    old_r, r = e, phi
+    old_s, s = 1, 0
+    while r != 0:
+        q = old_r // r
+        old_r, r = r, old_r - q * r
+        old_s, s = s, old_s - q * s
+    return old_s % phi
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -47,9 +66,11 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     # n = pq
     # PUT YOUR CODE HERE
+    n = p * q
 
     # phi = (p-1)(q-1)
     # PUT YOUR CODE HERE
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
@@ -61,6 +82,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
         g = gcd(e, phi)
 
     # Use Extended Euclid's Algorithm to generate the private key
+    # PUT YOUR CODE HERE
     d = multiplicative_inverse(e, phi)
 
     # Return public and private keypair
