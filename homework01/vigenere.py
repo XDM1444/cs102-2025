@@ -20,11 +20,11 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     k = 0
     for ch in plaintext:
         key_ch = keyword[k % n]
-        shift = (ord(key_ch.lower()) - ord('a')) % 26
-        if 'A' <= ch <= 'Z':
-            res.append(chr((ord(ch) - ord('A') + shift) % 26 + ord('A')))
-        elif 'a' <= ch <= 'z':
-            res.append(chr((ord(ch) - ord('a') + shift) % 26 + ord('a')))
+        shift = (ord(key_ch.lower()) - ord("a")) % 26
+        if "A" <= ch <= "Z":
+            res.append(chr((ord(ch) - ord("A") + shift) % 26 + ord("A")))
+        elif "a" <= ch <= "z":
+            res.append(chr((ord(ch) - ord("a") + shift) % 26 + ord("a")))
         else:
             res.append(ch)
         k += 1  # двигаем ключ НА КАЖДОМ символе
@@ -53,11 +53,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     k = 0
     for ch in ciphertext:
         key_ch = keyword[k % n]
-        shift = (ord(key_ch.lower()) - ord('a')) % 26
-        if 'A' <= ch <= 'Z':
-            res.append(chr((ord(ch) - ord('A') - shift) % 26 + ord('A')))
-        elif 'a' <= ch <= 'z':
-            res.append(chr((ord(ch) - ord('a') - shift) % 26 + ord('a')))
+        shift = (ord(key_ch.lower()) - ord("a")) % 26
+        if "A" <= ch <= "Z":
+            res.append(chr((ord(ch) - ord("A") - shift) % 26 + ord("A")))
+        elif "a" <= ch <= "z":
+            res.append(chr((ord(ch) - ord("a") - shift) % 26 + ord("a")))
         else:
             res.append(ch)
         k += 1  # двигаем ключ НА КАЖДОМ символе
