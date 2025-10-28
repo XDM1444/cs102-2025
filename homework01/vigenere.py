@@ -8,24 +8,27 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'python'
     >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
     'LXFOPVEFRNHR'
+    >>> encrypt_vigenere("Python 3.6!", "Key")
+    'Zcxiqb 3.6!'
+    >>> encrypt_vigenere("introduction to python", "lsci")
+    'tfvzzvwkeaqv lq aqvpzf'
     """
-    # PUT YOUR CODE HERE
     if not keyword:
         return plaintext
-    ciphertext = ""
-    key_index = 0
+    res = []
     n = len(keyword)
+    k = 0
     for ch in plaintext:
-        key_ch = keyword[key_index % n]
-        shift = (ord(key_ch.lower()) - ord("a")) % 26
-        if "A" <= ch <= "Z":
-            ciphertext += chr((ord(ch) - ord("A") + shift) % 26 + ord("A"))
-        elif "a" <= ch <= "z":
-            ciphertext += chr((ord(ch) - ord("a") + shift) % 26 + ord("a"))
+        key_ch = keyword[k % n]
+        shift = (ord(key_ch.lower()) - ord('a')) % 26
+        if 'A' <= ch <= 'Z':
+            res.append(chr((ord(ch) - ord('A') + shift) % 26 + ord('A')))
+        elif 'a' <= ch <= 'z':
+            res.append(chr((ord(ch) - ord('a') + shift) % 26 + ord('a')))
         else:
-            ciphertext += ch
-        key_index += 1
-    return ciphertext
+            res.append(ch)
+        k += 1  # двигаем ключ НА КАЖДОМ символе
+    return "".join(res)
 
 
 def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
@@ -38,21 +41,24 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'python'
     >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
     'ATTACKATDAWN'
+    >>> decrypt_vigenere("Zcxiqb 3.6!", "Key")
+    'Python 3.6!'
+    >>> decrypt_vigenere("tfvzzvwkeaqv lq aqvpzf", "lsci")
+    'introduction to python'
     """
-    # PUT YOUR CODE HERE
     if not keyword:
         return ciphertext
-    plaintext = ""
-    key_index = 0
+    res = []
     n = len(keyword)
+    k = 0
     for ch in ciphertext:
-        key_ch = keyword[key_index % n]
-        shift = (ord(key_ch.lower()) - ord("a")) % 26
-        if "A" <= ch <= "Z":
-            plaintext += chr((ord(ch) - ord("A") - shift) % 26 + ord("A"))
-        elif "a" <= ch <= "z":
-            plaintext += chr((ord(ch) - ord("a") - shift) % 26 + ord("a"))
+        key_ch = keyword[k % n]
+        shift = (ord(key_ch.lower()) - ord('a')) % 26
+        if 'A' <= ch <= 'Z':
+            res.append(chr((ord(ch) - ord('A') - shift) % 26 + ord('A')))
+        elif 'a' <= ch <= 'z':
+            res.append(chr((ord(ch) - ord('a') - shift) % 26 + ord('a')))
         else:
-            plaintext += ch
-        key_index += 1
-    return plaintext
+            res.append(ch)
+        k += 1  # двигаем ключ НА КАЖДОМ символе
+    return "".join(res)
