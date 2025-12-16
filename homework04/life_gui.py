@@ -1,5 +1,6 @@
 import pygame
-import pygame.locals as pgl
+import pygame
+from pygame.locals import K_SPACE, QUIT
 from life import GameOfLife
 from ui import UI
 
@@ -43,13 +44,13 @@ class GUI(UI):
         running = True
         while running:
             for event in pygame.event.get():
-                if event.type == pgl.QUIT:
+                if event.type == QUIT:
                     running = False
 
-                if event.type == pgl.KEYDOWN and event.key == pgl.K_SPACE:
+                if event.type == pygame.KEYDOWN and event.key == K_SPACE:
                     self.paused = not self.paused
 
-                if self.paused and event.type == pgl.MOUSEBUTTONDOWN:
+                if self.paused and event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos
                     c = x // self.cell_size
                     r = y // self.cell_size
