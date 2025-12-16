@@ -58,3 +58,6 @@ class Console(UI):
             screen.keypad(False)
             curses.echo()
             curses.endwin()
+
+    def step(self) -> None:
+        self.life.step()

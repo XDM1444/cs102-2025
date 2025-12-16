@@ -21,8 +21,7 @@ class GameOfLife:
         self.height = height
         self.cell_size = cell_size
 
-        self.screen_size = width, height
-        self.screen = pygame.display.set_mode(self.screen_size)
+        self.screen = pygame.display.set_mode((width, height))
 
         self.cell_width = self.width // self.cell_size
         self.cell_height = self.height // self.cell_size
@@ -66,9 +65,16 @@ class GameOfLife:
         pygame.quit()
 
     def create_grid(self, randomize: bool = False) -> Grid:
-        if randomize:
-            return [[random.randint(0, 1) for _ in range(self.cell_width)] for _ in range(self.cell_height)]
-        return [[0 for _ in range(self.cell_width)] for _ in range(self.cell_height)]
+        grid: Grid = []
+
+        for _ in range(self.cell_height):
+            if randomize:
+                row = [random.randint(0, 1) for _ in range(self.cell_width)]
+            else:
+                row = [0 for _ in range(self.cell_width)]
+            grid.append(row)
+
+        return grid
 
     def draw_grid(self) -> None:
         for r in range(self.cell_height):
