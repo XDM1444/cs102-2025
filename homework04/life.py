@@ -75,7 +75,8 @@ class GameOfLife:
     @property
     def is_changing(self) -> bool:
         different = self.curr_generation != self.prev_generation
-        has_alive = any(v == 1 for row in self.curr_generation for v in row)
+        flat = (v for row in self.curr_generation for v in row)
+        has_alive = any(v == 1 for v in flat)
         return different and has_alive
 
     @staticmethod
