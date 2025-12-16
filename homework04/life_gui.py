@@ -25,7 +25,8 @@ class GUI(UI):
     def draw_grid(self) -> None:
         for r in range(self.life.rows):
             for c in range(self.life.cols):
-                color = pygame.Color("green") if self.life.curr_generation[r][c] == 1 else pygame.Color("white")
+                is_alive = self.life.curr_generation[r][c] == 1
+                color = pygame.Color("green") if is_alive else pygame.Color("white")
                 rect = pygame.Rect(
                     c * self.cell_size,
                     r * self.cell_size,
@@ -55,7 +56,12 @@ class GUI(UI):
                     if 0 <= r < self.life.rows and 0 <= c < self.life.cols:
                         self.life.curr_generation[r][c] = 1 - self.life.curr_generation[r][c]
 
-            if (not self.paused) and self.life.is_changing and (not self.life.is_max_generations_exceeded):
+            if (
+                 not self.paused
+                and self.life.is_changing
+                and not self.life.is_max_generations_exceeded
+            ):
+
                 self.life.step()
 
             self.screen.fill(pygame.Color("white"))

@@ -92,5 +92,8 @@ class GameOfLife:
         return life
 
     def save(self, filename: pathlib.Path) -> None:
-        text = "\n".join("".join(str(v) for v in row) for row in self.curr_generation) + "\n"
+        text = "\n".join(
+            "".join(str(v) for v in row) for row in self.curr_generation
+        )
+        text += "\n"
         filename.write_text(text, encoding="utf-8")
