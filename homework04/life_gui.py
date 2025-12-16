@@ -56,11 +56,7 @@ class GUI(UI):
                     if 0 <= r < self.life.rows and 0 <= c < self.life.cols:
                         self.life.curr_generation[r][c] = 1 - self.life.curr_generation[r][c]
 
-            if (
-                 not self.paused
-                and self.life.is_changing
-                and not self.life.is_max_generations_exceeded
-            ):
+            if not self.paused and self.life.is_changing and not self.life.is_max_generations_exceeded:
 
                 self.life.step()
 
