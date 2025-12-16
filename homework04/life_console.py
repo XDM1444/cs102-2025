@@ -6,8 +6,6 @@ from ui import UI
 
 
 class Console(UI):
-    def __init__(self, life: GameOfLife) -> None:
-        super().__init__(life)
 
     def draw_borders(self, screen) -> None:
         screen.clear()
