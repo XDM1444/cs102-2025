@@ -1,8 +1,9 @@
+import importlib
 import random
 import typing as tp
 
-import pygame
-from pygame.locals import QUIT
+pygame = importlib.import_module("pygame")
+pgl = importlib.import_module("pygame.locals")
 
 Cell = tp.Tuple[int, int]
 Cells = tp.List[int]
@@ -52,7 +53,7 @@ class GameOfLife:
         running = True
         while running:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == pgl.QUIT:
                     running = False
 
             self.screen.fill(pygame.Color("white"))
