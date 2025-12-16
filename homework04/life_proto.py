@@ -103,12 +103,7 @@ class GameOfLife:
                 else:
                     new_grid[r][c] = 1 if alive_cnt == 3 else 0
 
-        Returns
-        ----------
-        out : Cells
-            Список соседних клеток, в котором каждая позиция – 0 или 1.
-        """
-        pass
+        return new_grid
 
     def step(self) -> None:
         self.prev_grid = [row[:] for row in self.grid]
