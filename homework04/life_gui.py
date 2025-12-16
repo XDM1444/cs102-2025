@@ -1,6 +1,6 @@
 import pygame
 from life import GameOfLife
-from pygame.locals import K_SPACE, QUIT
+import pygame.locals as pgl
 from ui import UI
 
 
@@ -43,13 +43,13 @@ class GUI(UI):
         running = True
         while running:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == pgl.QUIT:
                     running = False
 
-                if event.type == pygame.KEYDOWN and event.key == K_SPACE:
+                if event.type == pgl.KEYDOWN and event.key == pgl.K_SPACE:
                     self.paused = not self.paused
 
-                if self.paused and event.type == pygame.MOUSEBUTTONDOWN:
+                if self.paused and event.type == pgl.MOUSEBUTTONDOWN:
                     x, y = event.pos
                     c = x // self.cell_size
                     r = y // self.cell_size
@@ -57,7 +57,6 @@ class GUI(UI):
                         self.life.curr_generation[r][c] = 1 - self.life.curr_generation[r][c]
 
             if not self.paused and self.life.is_changing and not self.life.is_max_generations_exceeded:
-
                 self.life.step()
 
             self.screen.fill(pygame.Color("white"))
