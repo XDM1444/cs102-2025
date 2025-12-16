@@ -82,7 +82,13 @@ class GameOfLife:
     @staticmethod
     def from_file(filename: pathlib.Path) -> "GameOfLife":
         lines = filename.read_text(encoding="utf-8").splitlines()
-        grid: Grid = [[1 if ch == "1" else 0 for ch in line.strip()] for line in lines if line.strip() != ""]
+
+        grid: Grid = []
+        for line in lines:
+            s = line.strip()
+            if s:
+                grid.append([1 if ch == "1" else 0 for ch in s])
+
         rows = len(grid)
         cols = len(grid[0]) if rows else 0
 
