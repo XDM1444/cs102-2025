@@ -1,6 +1,6 @@
 import pygame
-import pygame
 from pygame.locals import K_SPACE, QUIT
+
 from life import GameOfLife
 from ui import UI
 
