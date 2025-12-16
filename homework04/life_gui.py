@@ -1,5 +1,5 @@
-from life import GameOfLife
 import pygame  # type: ignore[import-not-found]
+from life import GameOfLife
 from pygame.locals import K_SPACE, QUIT  # type: ignore[import-not-found]
 
 from ui import UI
